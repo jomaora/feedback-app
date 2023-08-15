@@ -1,9 +1,10 @@
+import { v4 as uuid } from 'uuid';
 import { useState } from 'react'
 import Card from './shared/Card'
 import Button from './shared/Button'
 import RatingSelect from './RatingSelect'
 
-function FeedbackForm() {
+function FeedbackForm({handleAdd}) {
   const [text, setText] = useState('')
   const [rating, setRating] = useState(10)
   const [btnDisabled, setBtnDisabled] = useState(true)
@@ -24,11 +25,28 @@ function FeedbackForm() {
     setText(e.target.value)
   }
 
+  const handleOnSubmit = evt => {
+    evt.preventDefault(); // avoid reload of form + page
+    if (text !== '' && text.trim().length >= 10) {
+      console.log('--->')
+      const newFeedback = {
+        id: uuid(),
+        rating,
+        text
+      }
+      handleAdd(newFeedback);
+      setText('');
+      setRating(10);
+      setBtnDisabled(false);
+      setMessage('');
+    }
+  };
+
   return (
     <Card>
-      <form>
+      <form onSubmit={handleOnSubmit}>
         <h2>How would you rate your service with us?</h2>
-        <RatingSelect setRating={setRating}/>
+        <RatingSelect rating={rating} setRating={setRating}/>
         <div className='input-group'>
           <input
             onChange={handleTextChange}
