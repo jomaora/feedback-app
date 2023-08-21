@@ -23,6 +23,14 @@ export const FeedbackProvider = ({children}) => {
     setFeedback([newFeedback, ...feedback])
   }
 
+  const updateFeedback = (id, text, rating) => {
+    const index = feedback.findIndex(feedback => feedback.id === id);
+    const newList = [...feedback];
+    newList[index] = {id, text, rating};
+    setFeedback([...newList]);
+    setFeedbackEdit({item: {}, edit: false});
+  }
+
   const editFeedback = feedback => {
     setFeedbackEdit({item: feedback, edit: true});
   }
@@ -32,7 +40,8 @@ export const FeedbackProvider = ({children}) => {
     deleteFeedback,
     addFeedback,
     editFeedback,
-    feedbackEdit
+    feedbackEdit,
+    updateFeedback
   }}>
     {children}
   </FeedbackContext.Provider>);
