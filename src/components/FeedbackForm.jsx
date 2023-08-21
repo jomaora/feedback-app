@@ -1,10 +1,13 @@
 import { v4 as uuid } from 'uuid';
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import Card from './shared/Card'
 import Button from './shared/Button'
 import RatingSelect from './RatingSelect'
+import FeedbackContext from '../context/FeedbackContext';
 
-function FeedbackForm({handleAdd}) {
+function FeedbackForm() {
+  const {addFeedback} = useContext(FeedbackContext);
+
   const [text, setText] = useState('')
   const [rating, setRating] = useState(10)
   const [btnDisabled, setBtnDisabled] = useState(true)
@@ -28,13 +31,12 @@ function FeedbackForm({handleAdd}) {
   const handleOnSubmit = evt => {
     evt.preventDefault(); // avoid reload of form + page
     if (text !== '' && text.trim().length >= 10) {
-      console.log('--->')
       const newFeedback = {
         id: uuid(),
         rating,
         text
       }
-      handleAdd(newFeedback);
+      addFeedback(newFeedback);
       setText('');
       setRating(10);
       setBtnDisabled(false);
