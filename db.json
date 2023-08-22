@@ -1,0 +1,24 @@
+{
+  "feedback": [
+    {
+      "id": 1,
+      "text": "This item is from context from the backend",
+      "rating": 5
+    },
+    {
+      "id": 2,
+      "text": "This item is from context from the backend",
+      "rating": 2
+    },
+    {
+      "id": 3,
+      "text": "This item is from context from the backend",
+      "rating": 3
+    },
+    {
+      "rating": 5,
+      "text": "some text of a post created from client http",
+      "id": 4
+    }
+  ]
+}
