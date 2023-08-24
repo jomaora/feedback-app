@@ -6,19 +6,19 @@
       "rating": 5
     },
     {
-      "id": 2,
-      "text": "This item is from context from the backend",
-      "rating": 2
-    },
-    {
-      "id": 3,
-      "text": "This item is from context from the backend",
-      "rating": 3
+      "text": "This item is from context from the backend changed",
+      "rating": 6,
+      "id": 2
     },
     {
       "rating": 5,
       "text": "some text of a post created from client http",
       "id": 4
+    },
+    {
+      "text": "This is a new text edited",
+      "rating": 6,
+      "id": 5
     }
   ]
 }

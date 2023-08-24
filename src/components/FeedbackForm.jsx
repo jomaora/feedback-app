@@ -1,4 +1,3 @@
-import { v4 as uuid } from 'uuid';
 import { useContext, useEffect, useState } from 'react'
 import Card from './shared/Card'
 import Button from './shared/Button'
@@ -43,7 +42,6 @@ function FeedbackForm() {
         updateFeedback(feedbackEdit.item.id, text, rating);
       } else {
         const newFeedback = {
-          id: uuid(),
           rating,
           text
         }
