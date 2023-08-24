@@ -211,6 +211,14 @@ input:focus {
   margin: 10px 0;
 }
 
+.loader {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  height: 100px;
+  align-items: center;
+}
+
 @media (max-width: 600px) {
   .rating li {
     margin: 10px 3px;

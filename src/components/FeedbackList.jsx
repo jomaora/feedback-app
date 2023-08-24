@@ -1,11 +1,20 @@
 import {useContext} from 'react';
+import BeatLoader from "react-spinners/BeatLoader";
 import {motion, AnimatePresence} from 'framer-motion';
 import PropTypes from 'prop-types'
 import FeedbackItem from './FeedbackItem'
 import FeedbackContext from "../context/FeedbackContext";
 
 function FeedbackList() {
-  const {feedback} = useContext(FeedbackContext);
+  const {feedback, isLoading} = useContext(FeedbackContext);
+
+  if (isLoading) {
+    return (
+      <div className='loader'>
+        <BeatLoader color='#AA0000'/>
+      </div>
+    );
+  }
 
   if (!feedback || feedback.length === 0) {
     return <p>No Feedback Yet</p>

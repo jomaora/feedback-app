@@ -1,13 +1,22 @@
-import {createContext, useState} from "react";
+import {createContext, useEffect, useState} from "react";
 
 const FeedbackContext = createContext();
 
 export const FeedbackProvider = ({children}) => {
-  const [feedback, setFeedback] = useState([
-    {id: 1, text: 'This item is from context', rating: 5},
-    {id: 2, text: 'This item is from context 2', rating: 2},
-    {id: 3, text: 'This item is from context 3', rating: 3}
-  ]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [feedback, setFeedback] = useState([]);
+
+  const fetchFeedback = async () => {
+    const response  = await fetch('http://localhost:5005/feedback?_sort=id&_order=desc');
+    const data = await response.json();
+    setIsLoading(false);
+    setFeedback(data);
+  };
+
+  useEffect(() => {
+    fetchFeedback();
+  }, []);
+  // we add this to run it as soon as the page loads, and it is empty to run only once
 
   const [feedbackEdit, setFeedbackEdit] = useState([
     {item: {}, edit: false}
@@ -41,7 +50,8 @@ export const FeedbackProvider = ({children}) => {
     addFeedback,
     editFeedback,
     feedbackEdit,
-    updateFeedback
+    updateFeedback,
+    isLoading
   }}>
     {children}
   </FeedbackContext.Provider>);
